@@ -1,0 +1,123 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="l452eval" target="8" version="2">
+  <project Name="l452eval">
+    <configuration
+      Name="Common"
+      Placement="Flash"
+      Target="STM32L452RE"
+      arm_architecture="v7EM"
+      arm_core_type="Cortex-M4"
+      arm_fp_abi="Hard"
+      arm_fpu_type="FPv4-SP-D16"
+      arm_linker_heap_size="0"
+      arm_linker_jtag_pad_pre_dr="1"
+      arm_linker_jtag_pad_pre_ir="5"
+      arm_linker_process_stack_size="0"
+      arm_linker_stack_size="0"
+      arm_math_errno="Yes"
+      arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory$(HostDLL)"
+      arm_simulator_memory_simulation_parameter="STM32L452RE;0x80000;0x28000"
+      arm_supply_absolute_file_path="No"
+      arm_target_loader_applicable_loaders="Flash"
+      arm_target_loader_default_loader="Flash"
+      arm_use_builtins="Yes"
+      build_intermediate_directory="$(ProjectName)_$(Configuration)"
+      build_output_directory="$(ProjectName)_$(Configuration)"
+      build_quietly="Yes"
+      build_toolchain_directory=""
+      c_preprocessor_definitions="DEVICE=452;EXT_MHz=0"
+      c_user_include_directories=".;safely/cppext;cortexm/stm32;cortexm;$(TargetsDir)/STM32/include"
+      code_completion_options="-isystem /d/bin/gcc-arm-none-eabi/arm-none-eabi/include"
+      cpp_only_additional_options="-Wall;-Wno-unknown-pragmas;-fno-rtti;-fno-exceptions"
+      debug_initial_breakpoint_set_option="Never"
+      debug_register_definition_file="$(TargetsDir)/STM32/STM32L4x2_Peripherals.xml"
+      gcc_c_language_standard="c11"
+      gcc_cplusplus_language_standard="c++17"
+      gcc_entry_point="cstartup"
+      gcc_optimization_level="None"
+      gcc_prefix="arm-none-eabi-"
+      gcc_wchar_size="16-Bit"
+      link_include_standard_libraries="Yes"
+      link_time_optimization="No"
+      linker_additional_options=""
+      linker_keep_symbols="vectors"
+      linker_memory_map_file="$(TargetsDir)/STM32/STM32L452RE_MemoryMap.xml"
+      linker_printf_fmt_level="int"
+      linker_printf_fp_enabled="No"
+      linker_printf_width_precision_supported="No"
+      linker_scanf_character_group_matching_enabled="No"
+      linker_scanf_fmt_level="int"
+      linker_scanf_fp_enabled="No"
+      linker_section_placement_file="$(StudioDir)/targets/Cortex_M/flash_placement.xml"
+      macros=""
+      post_build_command="$(ProjectDir)/cortexm/elf2dfuse $(ProjectDir)/$(ProjectName)_THUMB_Debug/$(ProjectName).elf $(ProjectName).dfu"
+      project_can_build_in_parallel="Yes"
+      project_directory=""
+      project_type="Executable"
+      property_groups_file_path="$(TargetsDir)/STM32/propertyGroups.xml"
+      target_get_partname_script="GetPartName()"
+      target_match_partname_script="MatchPartName(&quot;$(Target)&quot;)"
+      target_script_file="$(TargetsDir)/STM32/STM32_Target.js"
+      target_trace_initialize_script="EnableTrace(&quot;$(TraceInterfaceType)&quot;)"
+      use_external_gcc="No" />
+    <configuration
+      Name="Flash"
+      arm_target_flash_loader_file_path="$(LOADER:$(TargetsDir)/STM32/Release/STM32L4_512K_Loader_rpc.elf)"
+      arm_target_loader_can_erase_all="Yes"
+      arm_target_loader_can_lock_all="No"
+      arm_target_loader_can_lock_range="No"
+      arm_target_loader_can_unlock_all="No"
+      arm_target_loader_can_unlock_range="No"
+      target_reset_script="FLASHReset()" />
+    <configuration Name="RAM" target_reset_script="Reset()" />
+    <folder Name="Source Files">
+      <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
+      <file file_name="l452eval.cpp" />
+      <folder Name="cortexm">
+        <file file_name="cortexm/stm32/uart.cpp">
+          <configuration Name="THUMB_Debug" build_exclude_from_build="Yes" />
+        </file>
+        <file file_name="cortexm/stm32/timer.cpp" />
+        <file file_name="cortexm/stm32/stm32.cpp" />
+        <file file_name="cortexm/stm32/gpiof4.cpp" />
+        <file file_name="cortexm/stm32/clocksl4.cpp" />
+        <file file_name="cortexm/systick.cpp" />
+        <file file_name="cortexm/cstartup.cpp" />
+        <file file_name="cortexm/nvic.cpp" />
+        <file file_name="cortexm/cortexm3.s" />
+        <file file_name="cortexm/memory.s" />
+        <file file_name="cortexm/fpu.cpp" />
+        <file file_name="cortexm/core_cmfunc.cpp" />
+      </folder>
+    </folder>
+    <folder Name="System Files">
+      <file file_name="l452eval.ld" />
+    </folder>
+  </project>
+  <configuration
+    Name="THUMB_Debug"
+    gcc_c_language_standard="c11"
+    gcc_cplusplus_language_standard="c++17"
+    inherited_configurations="THUMB;Debug" />
+  <configuration
+    Name="THUMB"
+    Platform="ARM"
+    arm_instruction_set="Thumb"
+    arm_library_instruction_set="Thumb"
+    c_preprocessor_definitions="__THUMB"
+    hidden="Yes" />
+  <configuration
+    Name="Debug"
+    c_preprocessor_definitions="DEBUG"
+    debug_initial_breakpoint="main"
+    debug_initial_breakpoint_set_option="Never"
+    gcc_debugging_level="Level 3"
+    gcc_omit_frame_pointer="Yes"
+    gcc_optimization_level="None"
+    hidden="Yes" />
+  <configuration
+    Name="Common"
+    arm_architecture="v7M"
+    build_intermediate_directory="$(ProjectName)_$(Configuration)"
+    build_output_directory="$(ProjectName)_$(Configuration)" />
+</solution>
