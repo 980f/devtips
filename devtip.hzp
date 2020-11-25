@@ -1,6 +1,6 @@
 <!DOCTYPE CrossStudio_Project_File>
-<solution Name="l452eval" target="8" version="2">
-  <project Name="l452eval">
+<solution Name="devtip" target="8" version="2">
+  <project Name="devtip">
     <configuration
       Name="Common"
       Placement="Flash"
@@ -25,7 +25,7 @@
       build_output_directory="$(ProjectName)_$(Configuration)"
       build_quietly="Yes"
       build_toolchain_directory=""
-      c_preprocessor_definitions="DEVICE=452;EXT_MHz=0"
+      c_preprocessor_definitions="DEVICE=452;EXT_MHz=0,LSE_kHz=32"
       c_user_include_directories=".;safely/cppext;cortexm/stm32;cortexm;$(TargetsDir)/STM32/include"
       code_completion_options="-isystem /d/bin/gcc-arm-none-eabi/arm-none-eabi/include"
       cpp_only_additional_options="-Wall;-Wno-unknown-pragmas;-fno-rtti;-fno-exceptions"
@@ -72,7 +72,7 @@
     <configuration Name="RAM" target_reset_script="Reset()" />
     <folder Name="Source Files">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
-      <file file_name="l452eval.cpp" />
+      <file file_name="devtip.cpp" />
       <folder Name="cortexm">
         <file file_name="cortexm/stm32/uart.cpp">
           <configuration Name="THUMB_Debug" build_exclude_from_build="Yes" />
@@ -91,7 +91,7 @@
       </folder>
     </folder>
     <folder Name="System Files">
-      <file file_name="l452eval.ld" />
+      <file file_name="devtip.ld" />
     </folder>
   </project>
   <configuration

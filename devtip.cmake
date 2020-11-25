@@ -8,6 +8,7 @@ INCLUDE_DIRECTORIES(".")
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/cortexm ${PROJECT_SOURCE_DIR}/cortexm/stm32)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/safely/cppext)
 
+#multiple LIST(APPEND ...) used for no particular reason (someday might make libraries and these would move to the cmake files for buiding each library)
 LIST(APPEND SOURCES
   cortexm/stm32/timer.cpp cortexm/stm32/timer.h
   cortexm/stm32/stm32.cpp cortexm/stm32/stm32.h
@@ -21,15 +22,15 @@ LIST(APPEND SOURCES
   )
 
 LIST(APPEND SOURCES
-  #cortexm/core_cmfunc.cpp
-  #cortexm/fpu.cpp
-  #cortexm/systick.cpp
-  #cortexm/nvic.cpp nvicTable.inc
-  #cortexm/cortexm3.s
+  cortexm/core_cmfunc.cpp
+  cortexm/fpu.cpp
+  cortexm/systick.cpp
+  cortexm/nvic.cpp nvicTable.inc
+  cortexm/cortexm3.s
   )
 
 LIST(APPEND SOURCES
-  ${PROJECT_NAME}.cpp
+  devtip.cpp
   #safely/cppext/minimath.cpp
   )
 
