@@ -1,5 +1,5 @@
 /* first include your processor's MEMORY layout stuff.*/
-INCLUDE cortexm/stm32/l452re.ld
+INCLUDE cortexm/stm32/f407.ld
 
 STACKINCCM = 1 ;  /* If STACKINCCM is defined then stack goes there and you must remember that DMA can't access that memory (this might be false for L452). The value does not matter, use comments to control this. */
 

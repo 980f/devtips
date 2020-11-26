@@ -1,5 +1,5 @@
 #no ext osc on nucleo without playing with solder bridges. This is an opportunity to learn how to trim using the LSE (hah! they have automation for it, we don't have to code a PID loop)
-ADD_DEFINITIONS("-DEXT_MHz=0")
+ADD_DEFINITIONS("-DEXT_MHz=25")
 ADD_DEFINITIONS("-DLSE_kHz=32")
 
 
@@ -14,7 +14,7 @@ LIST(APPEND SOURCES
   cortexm/stm32/stm32.cpp cortexm/stm32/stm32.h
   cortexm/stm32/gpiof4.cpp cortexm/stm32/gpiof4.h cortexm/stm32/gpio.h
   cortexm/stm32/pinconfigurator.cpp
-  cortexm/stm32/clocksl4.cpp
+  cortexm/stm32/clocksf4.cpp
   #cortexm/stm32/flashf4.cpp
 
   #cortexm/stm32/gpiof1.cpp cortexm/stm32/gpiof1.h cortexm/stm32/gpio.h

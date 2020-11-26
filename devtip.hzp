@@ -4,7 +4,7 @@
     <configuration
       Name="Common"
       Placement="Flash"
-      Target="STM32L452RE"
+      Target="STM32F407VE"
       arm_architecture="v7EM"
       arm_core_type="Cortex-M4"
       arm_fp_abi="Hard"
@@ -16,7 +16,7 @@
       arm_linker_stack_size="0"
       arm_math_errno="Yes"
       arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory$(HostDLL)"
-      arm_simulator_memory_simulation_parameter="STM32L452RE;0x80000;0x28000"
+      arm_simulator_memory_simulation_parameter="STM32F407VE;0x80000;0x28000"
       arm_supply_absolute_file_path="No"
       arm_target_loader_applicable_loaders="Flash"
       arm_target_loader_default_loader="Flash"
@@ -25,12 +25,12 @@
       build_output_directory="$(ProjectName)_$(Configuration)"
       build_quietly="Yes"
       build_toolchain_directory=""
-      c_preprocessor_definitions="DEVICE=452;EXT_MHz=0,LSE_kHz=32"
+      c_preprocessor_definitions="DEVICE=407;EXT_MHz=25,LSE_kHz=32"
       c_user_include_directories=".;safely/cppext;cortexm/stm32;cortexm;$(TargetsDir)/STM32/include"
       code_completion_options="-isystem /d/bin/gcc-arm-none-eabi/arm-none-eabi/include"
       cpp_only_additional_options="-Wall;-Wno-unknown-pragmas;-fno-rtti;-fno-exceptions"
       debug_initial_breakpoint_set_option="Never"
-      debug_register_definition_file="$(TargetsDir)/STM32/STM32L4x2_Peripherals.xml"
+      debug_register_definition_file="$(TargetsDir)/STM32/STM32F4x7_Peripherals.xml"
       gcc_c_language_standard="c11"
       gcc_cplusplus_language_standard="c++17"
       gcc_entry_point="cstartup"
@@ -41,7 +41,7 @@
       link_time_optimization="No"
       linker_additional_options=""
       linker_keep_symbols="vectors"
-      linker_memory_map_file="$(TargetsDir)/STM32/STM32L452RE_MemoryMap.xml"
+      linker_memory_map_file="$(TargetsDir)/STM32/STM32F407VE_MemoryMap.xml"
       linker_printf_fmt_level="int"
       linker_printf_fp_enabled="No"
       linker_printf_width_precision_supported="No"
@@ -62,7 +62,7 @@
       use_external_gcc="No" />
     <configuration
       Name="Flash"
-      arm_target_flash_loader_file_path="$(LOADER:$(TargetsDir)/STM32/Release/STM32L4_512K_Loader_rpc.elf)"
+      arm_target_flash_loader_file_path="$(LOADER:$(TargetsDir)/STM32/Release/STM32F4_512K_Loader_rpc.elf)"
       arm_target_loader_can_erase_all="Yes"
       arm_target_loader_can_lock_all="No"
       arm_target_loader_can_lock_range="No"
@@ -80,7 +80,7 @@
         <file file_name="cortexm/stm32/timer.cpp" />
         <file file_name="cortexm/stm32/stm32.cpp" />
         <file file_name="cortexm/stm32/gpiof4.cpp" />
-        <file file_name="cortexm/stm32/clocksl4.cpp" />
+        <file file_name="cortexm/stm32/clocksf4.cpp" />
         <file file_name="cortexm/systick.cpp" />
         <file file_name="cortexm/cstartup.cpp" />
         <file file_name="cortexm/nvic.cpp" />

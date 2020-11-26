@@ -6,7 +6,7 @@ project(devtip)
 set(CMAKE_CXX_STANDARD 17)
 
 #processor selection:
-include(cortexm/stm32/l452.cmake)
+include(cortexm/stm32/f407.cmake)
 #the above includes a shared file for compiler setup.
 
 #project files are out of line for maximal file sharing with minimal boilerplate.

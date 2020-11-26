@@ -1,7 +1,7 @@
 
 
+#include <cortexm/systick.h>
 #include "timer.h"
-
 Timer tim{1};//timer 1 has the full set of features.
 
 
@@ -9,21 +9,38 @@ Timer tim{1};//timer 1 has the full set of features.
 
 #include "pinconfigurator.h"
 #if 1
-ConfPin(E,5,PinOptions::function,PinOptions::slow, PinOptions::F, 3);
-ConfPin(A,3,PinOptions::function,PinOptions::fast, PinOptions::F, 4);
-ConfPin(A,4,PinOptions::function,PinOptions::fastest, PinOptions::F, 5);
-ConfPin(A,6,PinOptions::input,PinOptions::slow, PinOptions::U, 0);
+
+#define DeclSwitch(bitnum) ConfPin(E,bitnum,PinOptions::input,PinOptions::slow, PinOptions::U, 0);\
+static const LogicalPin sw##bitnum({PE,bitnum},false)
+
+#define DeclLed(bitnum) ConfPin(E,bitnum,PinOptions::output,PinOptions::slow, PinOptions::F, 0);\
+static const LogicalPin led##bitnum({PE,bitnum},false)
+
+
+DeclSwitch(10);
+DeclSwitch(11);
+DeclSwitch(12);
+
+DeclLed(13);
+DeclLed(14);
+DeclLed(15);
+
 #endif
+
+PinInitializer makem;
 
 #pragma ide diagnostic ignored "EndlessLoop"
 int main() {
 
-  PinInitializer makem;
+  SystemTimer::startPeriodicTimer(1000);//traditional kHz wakeup.
 
   tim.init();
   tim.setPrescaleFor(10000);
 
   while(true){
     MNE(WFE);
+    led13=sw10;
+    led14=sw11;
+    led15=sw12;
   }
 }
