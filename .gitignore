@@ -18,3 +18,12 @@ cortexm/
 cmake*/
 *~
 
+#git conveniences
+gall
+gitlist
+pu
+st
+
+#links to save some typing
+elf 
+gdb
