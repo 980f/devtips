@@ -1,8 +1,6 @@
-
-
 #include <cortexm/systick.h>
 #include "timer.h"
-Timer tim{1};//timer 1 has the full set of features.
+const Timer tim{1};//timer 1 has the full set of features.
 
 
 #include "core_cmInstr.h"
@@ -27,7 +25,10 @@ DeclLed(15);
 
 #endif
 
-PinInitializer makem;
+#include "fpu.h"
+InitStep(InitCore)
+const FpuOptions useFpu(true,false); //loading a floating point value without having turned on the FPU causes an infinite vector through our "generate reset on fault" logic.
+
 
 #pragma ide diagnostic ignored "EndlessLoop"
 int main() {
