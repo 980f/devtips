@@ -37,6 +37,7 @@
       gcc_prefix="arm-none-eabi-"
       gcc_wchar_size="16-Bit"
       link_include_standard_libraries="Yes"
+      link_keep_lto_files="Yes"
       link_time_optimization="No"
       linker_additional_options=""
       linker_keep_symbols="vectors"
