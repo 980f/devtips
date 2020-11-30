@@ -24,7 +24,6 @@
       build_intermediate_directory="$(ProjectName)_$(Configuration)"
       build_output_directory="$(ProjectName)_$(Configuration)"
       build_quietly="Yes"
-      build_toolchain_directory=""
       c_preprocessor_definitions="DEVICE=452;EXT_MHz=0,LSE_kHz=32"
       c_user_include_directories=".;safely/cppext;cortexm/stm32;cortexm;$(TargetsDir)/STM32/include"
       code_completion_options="-isystem /d/bin/gcc-arm-none-eabi/arm-none-eabi/include"
@@ -88,6 +87,7 @@
         <file file_name="cortexm/memory.s" />
         <file file_name="cortexm/fpu.cpp" />
         <file file_name="cortexm/core_cmfunc.cpp" />
+        <file file_name="cortexm/stm32/pinconfigurator.cpp" />
       </folder>
     </folder>
     <folder Name="System Files">

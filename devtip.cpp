@@ -1,29 +1,52 @@
+#include <cortexm/systick.h>
 
 
-#include "timer.h"
+#include "core_cmInstr.h"
+#include "pinconfigurator.h"
 
 Timer tim{1};//timer 1 has the full set of features.
 
 
-#include "core_cmInstr.h"
+#include "fpu.h"
+InitStep(InitCore)
+const FpuOptions useFpu(true,false); //loading a floating point value without having turned on the FPU causes an infinite vector through our "generate reset on fault" logic.
 
-#include "pinconfigurator.h"
-#if 1
-ConfPin(E,5,PinOptions::function,PinOptions::slow, PinOptions::F, 3);
-ConfPin(A,3,PinOptions::function,PinOptions::fast, PinOptions::F, 4);
-ConfPin(A,4,PinOptions::function,PinOptions::fastest, PinOptions::F, 5);
-ConfPin(A,6,PinOptions::input,PinOptions::slow, PinOptions::U, 0);
-#endif
+#include "timer.h"
+
+const Timer tim {8};//8 is handiest on nucleo board
+
+const CCUnit ch[4] = {{tim, 1},
+                      {tim, 2},
+                      {tim, 3},
+                      {tim, 4}};
+
+#define CHPIN(port, bitnum) ConfPin(port,bitnum,PinOptions::function,PinOptions::slow, PinOptions::Float, 2);//todo: AF codes in timer constants table.
+CHPIN(C, 6)
+CHPIN(C, 7)
+CHPIN(C, 8)
+CHPIN(C, 9)
+
 
 #pragma ide diagnostic ignored "EndlessLoop"
 int main() {
 
-  PinInitializer makem;
-
   tim.init();
-  tim.setPrescaleFor(10000);
+        tim.setPrescaleFor(100000);
+        tim.setCycler(200);
+
+
+    u8 mode = 0b1'110'0'0'00;//mode pwm
+        for (unsigned chi = 4; chi-- > 0;) {
+          ch[chi].setTicks(100 + 20 * chi);
+          ch[chi].setmode(mode);
+          ch[chi].takePin(true);
+        }
+
+      tim.beRunning();
+    
 
   while(true){
     MNE(WFE);
+    
   }
 }
