@@ -34,7 +34,7 @@ const CCUnit ch[4] = {{tim, 1},
                       {tim, 3},
                       {tim, 4}};
 //PD 12..15 af3
-#define CHPIN(port, bitnum) ConfPin(port,bitnum,PinOptions::function,PinOptions::slow, PinOptions::Float, 3);
+#define CHPIN(port, bitnum) ConfPin(port,bitnum,PinOptions::function,PinOptions::slow, PinOptions::Float, 2);//todo: AF codes in timer constants table.
 CHPIN(D, 12)
 CHPIN(D, 13)
 CHPIN(D, 14)
@@ -59,7 +59,7 @@ int main() {
       led13 = initit;
       if (initit) {
         tim.init();
-        tim.setPrescaleFor(10000);
+        tim.setPrescaleFor(100000);
         tim.setCycler(200);
       }
     }
