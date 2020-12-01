@@ -12,12 +12,10 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/safely/cppext)
 LIST(APPEND SOURCES
   cortexm/stm32/timer.cpp cortexm/stm32/timer.h
   cortexm/stm32/stm32.cpp cortexm/stm32/stm32.h
-  cortexm/stm32/gpiof4.cpp cortexm/stm32/gpiof4.h cortexm/stm32/gpio.h
+  cortexm/stm32/${GPIO_MODULE}.cpp cortexm/stm32/${GPIO_MODULE}.h cortexm/stm32/gpio.h
   cortexm/stm32/pinconfigurator.cpp
-  cortexm/stm32/clocksl4.cpp
-  #cortexm/stm32/flashf4.cpp
+  cortexm/stm32/${CLOCK_MODULE}.cpp
 
-  #cortexm/stm32/gpiof1.cpp cortexm/stm32/gpiof1.h cortexm/stm32/gpio.h
   #cortexm/stm32/irqnums.h
   )
 

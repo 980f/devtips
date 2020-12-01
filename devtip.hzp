@@ -78,8 +78,12 @@
         </file>
         <file file_name="cortexm/stm32/timer.cpp" />
         <file file_name="cortexm/stm32/stm32.cpp" />
-        <file file_name="cortexm/stm32/gpiof4.cpp" />
-        <file file_name="cortexm/stm32/clocksl4.cpp" />
+        <file file_name="cortexm/stm32/gpiof4.cpp">
+          <configuration Name="THUMB_Debug" build_exclude_from_build="Yes" />
+        </file>
+        <file file_name="cortexm/stm32/clocksl4.cpp">
+          <configuration Name="THUMB_Debug" build_exclude_from_build="No" />
+        </file>
         <file file_name="cortexm/systick.cpp" />
         <file file_name="cortexm/cstartup.cpp" />
         <file file_name="cortexm/nvic.cpp" />
@@ -88,6 +92,7 @@
         <file file_name="cortexm/fpu.cpp" />
         <file file_name="cortexm/core_cmfunc.cpp" />
         <file file_name="cortexm/stm32/pinconfigurator.cpp" />
+        <file file_name="cortexm/stm32/gpiol4.cpp" />
       </folder>
     </folder>
     <folder Name="System Files">
