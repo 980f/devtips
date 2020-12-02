@@ -93,7 +93,10 @@
         <file file_name="cortexm/fpu.cpp" />
         <file file_name="cortexm/core_cmfunc.cpp" />
         <file file_name="cortexm/stm32/pinconfigurator.cpp" />
-        <file file_name="cortexm/stm32/gpiol4.cpp"> <configuration Name="THUMB_Debug" build_exclude_from_build="Yes" />
+        <file file_name="cortexm/stm32/gpiol4.cpp">
+          <configuration Name="THUMB_Debug" build_exclude_from_build="Yes" />
+        </file>
+        <file file_name="cortexm/stm32/clocksf4.cpp" />
       </folder>
     </folder>
     <folder Name="System Files">

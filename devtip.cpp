@@ -6,10 +6,10 @@
 
 #if 1
 
-#define DeclSwitch(bitnum) ConfPin(E,bitnum,PinOptions::input,PinOptions::slow, PinOptions::Up, 0);\
+#define DeclSwitch(bitnum) ConfPin(E,bitnum,PinOptions::input, PinOptions::Up,PinOptions::slow, 0);\
 static const LogicalPin sw##bitnum({PE,bitnum},false)
 
-#define DeclLed(bitnum) ConfPin(E,bitnum,PinOptions::output,PinOptions::slow, PinOptions::Float, 0);\
+#define DeclLed(bitnum) ConfPin(E,bitnum,PinOptions::output, PinOptions::Float, PinOptions::slow, 0);\
 static const LogicalPin led##bitnum({PE,bitnum},false)
 
 DeclSwitch(10);
@@ -34,14 +34,12 @@ const CCUnit ch[4] = {{tim, 1},
                       {tim, 3},
                       {tim, 4}};
 //PD 12..15 af3
-#define CHPIN(port, bitnum) ConfPin(port,bitnum,PinOptions::function,PinOptions::slow, PinOptions::Float, 2);//todo: AF codes in timer constants table.
+#define CHPIN(port, bitnum) ConfPin(port,bitnum,PinOptions::function,PinOptions::Float,PinOptions::slow,  2);//todo: AF codes in timer constants table.
 CHPIN(D, 12)
 CHPIN(D, 13)
 CHPIN(D, 14)
 CHPIN(D, 15)
 
-ConfPin(D, 10, PinOptions::output, PinOptions::slow, PinOptions::Float, 0);
-const LogicalPin D10 {{PD, 10}};
 
 #pragma ide diagnostic ignored "EndlessLoop"
 
@@ -53,25 +51,28 @@ int main() {
 
   SystemTimer::startPeriodicTimer(1000);//traditional kHz wakeup.
 
+  tim.init();
+  tim.setPrescaleFor(100000);
+  tim.setCycler(200);
+  u8 mode = 0b0'111'0'0'00;//mode pwm
+  for (unsigned chi = 4; chi-- > 0;) {
+    ch[chi].setTicks(100 + 20 * chi);
+    ch[chi].setmode(mode);
+    ch[chi].takePin(true);
+  }
+
   while (true) {
     MNE(WFE);
     if (changed(initit, sw10)) {
       led13 = initit;
       if (initit) {
-        tim.init();
-        tim.setPrescaleFor(100000);
-        tim.setCycler(200);
+        tim.OPM=1;
       }
     }
     if (changed(confit, sw11)) {
       led14 = confit;
       if (confit) {
-        u8 mode = 0b1'110'0'0'00;//mode pwm
-        for (unsigned chi = 4; chi-- > 0;) {
-          ch[chi].setTicks(100 + 20 * chi);
-          ch[chi].setmode(mode);
-          ch[chi].takePin(true);
-        }
+        tim.OPM=0;
       }
     }
 
