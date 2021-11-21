@@ -18,7 +18,7 @@ const CCUnit ch[4] = {{tim, 1},
                       {tim, 3},
                       {tim, 4}};
 
-#define CHPIN(port, bitnum) ConfPin(port,bitnum,PinOptions::function,PinOptions::slow, PinOptions::Float, 2);//todo: AF codes in timer constants table.
+#define CHPIN(port, bitnum) ConfPin(port,bitnum,PinOptions::function,PinOptions::Float, PinOptions::slow, 2);//todo: AF codes in timer constants table.
 CHPIN(C, 6)
 CHPIN(C, 7)
 CHPIN(C, 8)
